@@ -6,6 +6,6 @@ urlpatterns = [
     path('register/', views.registerUser, name='register'),
     
     path('profile/', views.getUserProfile, name="users-profile"),
-    path(' ', views.getUsers, name="users"),
+    path('', views.getUsers, name="users"),
 
 ]
