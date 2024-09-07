@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navbar, Nav, Container, Row, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import SearchBox from './SearchBox'
+// import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
 
 function Header() {
@@ -26,7 +26,7 @@ function Header() {
 
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <SearchBox />
+                        {/* <SearchBox /> */}
                         <Nav className="ml-auto">
 
                             <LinkContainer to='/cart'>
@@ -48,7 +48,7 @@ function Header() {
                                     </LinkContainer>
                                 )}
 
-
+{/* 
                             {userInfo && userInfo.isAdmin && (
                                 <NavDropdown title='Admin' id='adminmenue'>
                                     <LinkContainer to='/admin/userlist'>
@@ -64,7 +64,7 @@ function Header() {
                                     </LinkContainer>
 
                                 </NavDropdown>
-                            )}
+                            )} */}
 
 
                         </Nav>
