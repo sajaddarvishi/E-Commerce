@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 
-function PlaceOrderScreen({ }) {
-    const navigate = useNavigate();
+
+function PlaceOrderScreen({ history }) {
+
     const orderCreate = useSelector(state => state.orderCreate)
     const { order, error, success } = orderCreate
 
@@ -24,15 +25,15 @@ function PlaceOrderScreen({ }) {
 
 
     if (!cart.paymentMethod) {
-        navigate('/payment')
+        history.push('/payment')
     }
 
     useEffect(() => {
         if (success) {
-            navigate(`/order/${order._id}`)
-            dispatch({type: ORDER_CREATE_RESET})
+            history.push(`/order/${order._id}`)
+            dispatch({ type: ORDER_CREATE_RESET })
         }
-    }, [success])
+    }, [success, history])
 
     const placeOrder = () => {
         dispatch(createOrder({
