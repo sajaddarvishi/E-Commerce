@@ -31,8 +31,10 @@ function OrderScreen({ match, history }) {
             history.push('/login')
         }
         if (!order || order._id !== Number(orderId) || orderDeliver) {
-            dispatch(getOrderDetails(orderId))
             dispatch({ type: ORDER_DELIVER_RESET })
+
+            dispatch(getOrderDetails(orderId))
+
         } 
     }, [dispatch, order, orderId, successDeliver])
 
