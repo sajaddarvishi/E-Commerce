@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { saveShippingAddress } from '../actions/cartActions'
+import { useTranslation } from 'react-i18next'
 
 
 function ShippingScreen({ history }) {
-
+    const { t } =useTranslation()
     const cart = useSelector(state => state.cart)
     const { shippingAddress } = cart
 

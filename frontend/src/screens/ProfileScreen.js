@@ -8,8 +8,12 @@ import Message from '../components/Message'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
 import { listMyOrders } from '../actions/orderActions'
+import { useTranslation } from 'react-i18next'
+
 
 function ProfileScreen({ history }) {
+
+    const { t } =useTranslation()
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -66,7 +70,7 @@ function ProfileScreen({ history }) {
     return (
         <Row>
             <Col md={3}>
-                <h2>User Profile</h2>
+                <h2>{t('UserProfile')}</h2>
 
                 {message && <Message variant='danger'>{message}</Message>}
                 {error && <Message variant='danger'>{error}</Message>}
@@ -74,7 +78,7 @@ function ProfileScreen({ history }) {
                 <Form onSubmit={submitHandler}>
 
                     <Form.Group controlId='name'>
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label>{t('Name1')}</Form.Label>
                         <Form.Control
                             required
                             type='name'
@@ -86,7 +90,7 @@ function ProfileScreen({ history }) {
                     </Form.Group>
 
                     <Form.Group controlId='email'>
-                        <Form.Label>Email Address</Form.Label>
+                        <Form.Label>{t('EmailAddress')}</Form.Label>
                         <Form.Control
                             required
                             type='email'
@@ -98,7 +102,7 @@ function ProfileScreen({ history }) {
                     </Form.Group>
 
                     <Form.Group controlId='password'>
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label>{t('Password')}</Form.Label>
                         <Form.Control
 
                             type='password'
@@ -110,7 +114,7 @@ function ProfileScreen({ history }) {
                     </Form.Group>
 
                     <Form.Group controlId='passwordConfirm'>
-                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Label>{t('ConfirmPassword')}</Form.Label>
                         <Form.Control
 
                             type='password'
@@ -122,14 +126,14 @@ function ProfileScreen({ history }) {
                     </Form.Group>
 
                     <Button type='submit' variant='primary'>
-                        Update
+                        {t('Update')}
                 </Button>
 
                 </Form>
             </Col>
 
             <Col md={9}>
-                <h2>My Orders</h2>
+                <h2>{t('MyOrders')}</h2>
                 {loadingOrders ? (
                     <Loader />
                 ) : errorOrders ? (
@@ -138,11 +142,11 @@ function ProfileScreen({ history }) {
                             <Table striped responsive className='table-sm'>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Date</th>
-                                        <th>Total</th>
-                                        <th>Paid</th>
-                                        <th>Delivered</th>
+                                        <th>{t('ID')}</th>
+                                        <th>{t('Date')}</th>
+                                        <th>{t('Total')}</th>
+                                        <th>{t('Paid1')}</th>
+                                        <th>{t('Delivered1')}</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -158,7 +162,7 @@ function ProfileScreen({ history }) {
                                             )}</td>
                                             <td>
                                                 <LinkContainer to={`/order/${order._id}`}>
-                                                    <Button className='btn-sm'>Details</Button>
+                                                    <Button className='btn-sm'>{t('Details')}</Button>
                                                 </LinkContainer>
                                             </td>
                                         </tr>

@@ -7,9 +7,12 @@ import Message from '../components/Message'
 import Paginate from '../components/Paginate'
 import { listProducts, deleteProduct, createProduct } from '../actions/productActions'
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
+import { useTranslation } from 'react-i18next'
+
 
 function ProductListScreen({ history, match }) {
-
+    
+    const { t } =useTranslation()
     const dispatch = useDispatch()
 
     const productList = useSelector(state => state.productList)
@@ -57,12 +60,12 @@ function ProductListScreen({ history, match }) {
         <div>
             <Row className='align-items-center'>
                 <Col>
-                    <h1>Products</h1>
+                    <h1>{t('Products')}</h1>
                 </Col>
 
                 <Col className='text-right'>
                     <Button className='my-3' onClick={createProductHandler}>
-                        <i className='fas fa-plus'></i> Create Product
+                        <i className='fas fa-plus'></i> {t('Create Product')}
                     </Button>
                 </Col>
             </Row>
@@ -83,11 +86,11 @@ function ProductListScreen({ history, match }) {
                             <Table striped bordered hover responsive className='table-sm'>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>NAME</th>
-                                        <th>PRICE</th>
-                                        <th>CATEGORY</th>
-                                        <th>BRAND</th>
+                                        <th>{t('ID')}</th>
+                                        <th>{t('NAME')}</th>
+                                        <th>{t('PRICE1')}</th>
+                                        <th>{t('CATEGORY1')}</th>
+                                        <th>{t('BRAND1')}</th>
                                         <th></th>
                                     </tr>
                                 </thead>

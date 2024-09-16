@@ -7,9 +7,11 @@ import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import { getUserDetails, updateUser } from '../actions/userActions'
 import { USER_UPDATE_RESET } from '../constants/userConstants'
+import { useTranslation } from 'react-i18next'
 
 function UserEditScreen({ match, history }) {
-
+    
+    const { t } =useTranslation()
     const userId = match.params.id
 
     const [name, setName] = useState('')
@@ -50,11 +52,11 @@ function UserEditScreen({ match, history }) {
     return (
         <div>
             <Link to='/admin/userlist'>
-                Go Back
+                {t('goback')}
             </Link>
 
             <FormContainer>
-                <h1>Edit User</h1>
+                <h1>{t('EditUser')}</h1>
                 {loadingUpdate && <Loader />}
                 {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
 
@@ -63,7 +65,7 @@ function UserEditScreen({ match, history }) {
                         <Form onSubmit={submitHandler}>
 
                             <Form.Group controlId='name'>
-                                <Form.Label>Name</Form.Label>
+                                <Form.Label>{t('Name1')}</Form.Label>
                                 <Form.Control
 
                                     type='name'
@@ -75,7 +77,7 @@ function UserEditScreen({ match, history }) {
                             </Form.Group>
 
                             <Form.Group controlId='email'>
-                                <Form.Label>Email Address</Form.Label>
+                                <Form.Label>{t('emailaddress')}</Form.Label>
                                 <Form.Control
                                     type='email'
                                     placeholder='Enter Email'
@@ -96,7 +98,7 @@ function UserEditScreen({ match, history }) {
                             </Form.Group>
 
                             <Button type='submit' variant='primary'>
-                                Update
+                                {t('Update')}
                         </Button>
 
                         </Form>

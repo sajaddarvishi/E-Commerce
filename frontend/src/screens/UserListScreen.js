@@ -5,8 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { listUsers, deleteUser } from '../actions/userActions'
+import { useTranslation } from 'react-i18next'
+
 
 function UserListScreen({ history }) {
+    const { t } =useTranslation()
 
     const dispatch = useDispatch()
 
@@ -39,7 +42,7 @@ function UserListScreen({ history }) {
 
     return (
         <div>
-            <h1>Users</h1>
+            <h1>{t('Users')}</h1>
             {loading
                 ? (<Loader />)
                 : error
@@ -48,10 +51,10 @@ function UserListScreen({ history }) {
                         <Table striped bordered hover responsive className='table-sm'>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>NAME</th>
-                                    <th>EMAIL</th>
-                                    <th>ADMIN</th>
+                                    <th>{t('ID')}</th>
+                                    <th>{t('NAME2')}</th>
+                                    <th>{t('EMAIL1')}</th>
+                                    <th>{t('ADMIN')}</th>
                                     <th></th>
                                 </tr>
                             </thead>

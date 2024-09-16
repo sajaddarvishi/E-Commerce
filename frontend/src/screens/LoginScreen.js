@@ -6,8 +6,11 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import { login } from '../actions/userActions'
+import { useTranslation } from 'react-i18next'
+
 
 function LoginScreen({ location, history }) {
+    const { t } = useTranslation()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -31,16 +34,16 @@ function LoginScreen({ location, history }) {
 
     return (
         <FormContainer>
-            <h1>Sign In</h1>
+            <h1>{t('signin')}</h1>
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
 
                 <Form.Group controlId='email'>
-                    <Form.Label>Email Address</Form.Label>
+                    <Form.Label>{t('emailaddress')}</Form.Label>
                     <Form.Control
                         type='email'
-                        placeholder='Enter Email'
+                        placeholder={t('enteremail')}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     >
@@ -49,10 +52,10 @@ function LoginScreen({ location, history }) {
 
 
                 <Form.Group controlId='password'>
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>{t('password')}</Form.Label>
                     <Form.Control
                         type='password'
-                        placeholder='Enter Password'
+                        placeholder={t('enterpassword')}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     >
@@ -60,15 +63,15 @@ function LoginScreen({ location, history }) {
                 </Form.Group>
 
                 <Button type='submit' variant='primary'>
-                    Sign In
+                    {t('signin')}
                 </Button>
             </Form>
 
             <Row className='py-3'>
                 <Col>
-                    New Customer? <Link
+                    {t('newcustomer')} <Link
                         to={redirect ? `/register?redirect=${redirect}` : '/register'}>
-                        Register
+                        {t('register')}
                         </Link>
                 </Col>
             </Row>

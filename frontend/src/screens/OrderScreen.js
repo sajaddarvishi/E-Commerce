@@ -6,9 +6,13 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getOrderDetails, deliverOrder } from '../actions/orderActions'
 import { ORDER_DELIVER_RESET } from '../constants/orderConstants'
+import { useTranslation } from 'react-i18next'
+
 
 
 function OrderScreen({ match, history }) {
+
+    const { t } =useTranslation()
     const orderId = match.params.id
     const dispatch = useDispatch()
 
@@ -48,16 +52,16 @@ function OrderScreen({ match, history }) {
         <Message variant='danger'>{error}</Message>
     ) : (
                 <div>
-                    <h1>Order: {order._id}</h1>
+                    <h1>{t('Order')} {order._id}</h1>
                     <Row>
                         <Col md={8}>
                             <ListGroup variant='flush'>
                                 <ListGroup.Item>
-                                    <h2>Shipping</h2>
-                                    <p><strong>Name: </strong> {order.user.name}</p>
-                                    <p><strong>Email: </strong><a href={`mailto:${order.user.email}`}>{order.user.email}</a></p>
+                                    <h2>{t('Shipping')}</h2>
+                                    <p><strong>{t('Name')} </strong> {order.user.name}</p>
+                                    <p><strong>{t('Email')} </strong><a href={`mailto:${order.user.email}`}>{order.user.email}</a></p>
                                     <p>
-                                        <strong>Shipping: </strong>
+                                        <strong>{t('Shipping1')} </strong>
                                         {order.shippingAddress.address},  {order.shippingAddress.city}
                                         {'  '}
                                         {order.shippingAddress.postalCode},
@@ -66,29 +70,29 @@ function OrderScreen({ match, history }) {
                                     </p>
                                 </ListGroup.Item>
                                 {order.isDelivered ? (
-                                        <Message variant='success'>Delivered on {order.deliveredAt}</Message>
+                                        <Message variant='success'>{t('Deliveredon')} {order.deliveredAt}</Message>
                                     ) : (
-                                            <Message variant='warning'>Not Delivered</Message>
+                                            <Message variant='warning'>{t('NotDelivered')}</Message>
                                         )}
 
                                 <ListGroup.Item>
-                                    <h2>Payment Method</h2>
+                                    <h2>{t('PaymentMethod')}</h2>
                                     <p>
-                                        <strong>Method: </strong>
+                                        <strong>{t('Method')} </strong>
                                         {order.paymentMethod}
                                     </p>
                                     {order.isPaid ? (
-                                        <Message variant='success'>Paid on {order.paidAt}</Message>
+                                        <Message variant='success'>{t('Paid on')} {order.paidAt}</Message>
                                     ) : (
-                                            <Message variant='warning'>Not Paid</Message>
+                                            <Message variant='warning'>{t('Not Paid')}</Message>
                                         )}
 
                                 </ListGroup.Item>
 
                                 <ListGroup.Item>
-                                    <h2>Order Items</h2>
+                                    <h2>{t('OrderItems')}</h2>
                                     {order.orderItems.length === 0 ? <Message variant='info'>
-                                        Order is empty
+                                        {t('Order is empty')}
                             </Message> : (
                                             <ListGroup variant='flush'>
                                                 {order.orderItems.map((item, index) => (
@@ -120,33 +124,33 @@ function OrderScreen({ match, history }) {
                             <Card>
                                 <ListGroup variant='flush'>
                                     <ListGroup.Item>
-                                        <h2>Order Summary</h2>
+                                        <h2>{t('Order Summary')}</h2>
                                     </ListGroup.Item>
 
                                     <ListGroup.Item>
                                         <Row>
-                                            <Col>Items:</Col>
+                                            <Col>{t('Items1')}</Col>
                                             <Col>${order.itemsPrice}</Col>
                                         </Row>
                                     </ListGroup.Item>
 
                                     <ListGroup.Item>
                                         <Row>
-                                            <Col>Shipping:</Col>
+                                            <Col>{t('Shipping1')}</Col>
                                             <Col>${order.shippingPrice}</Col>
                                         </Row>
                                     </ListGroup.Item>
 
                                     <ListGroup.Item>
                                         <Row>
-                                            <Col>Tax:</Col>
+                                            <Col>{t('Tax:')}</Col>
                                             <Col>${order.taxPrice}</Col>
                                         </Row>
                                     </ListGroup.Item>
 
                                     <ListGroup.Item>
                                         <Row>
-                                            <Col>Total:</Col>
+                                            <Col>{t('Total1')}</Col>
                                             <Col>${order.totalPrice}</Col>
                                         </Row>
                                     </ListGroup.Item>
@@ -160,7 +164,7 @@ function OrderScreen({ match, history }) {
                                             className='btn btn-block'
                                             onClick={deliverHandler}
                                         >
-                                            Mark As Delivered
+                                            {t('MarkAsDelivered')}
                                         </Button>
                                     </ListGroup.Item>
                                 )}
