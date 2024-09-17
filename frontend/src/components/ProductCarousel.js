@@ -5,6 +5,7 @@ import { Carousel, Image } from 'react-bootstrap'
 import Loader from './Loader'
 import Message from './Message' 
 import { listTopProducts } from '../actions/productActions'
+import { formatPriceToPersian } from '../utils/priceFormatter';
 
 function ProductCarousel() {
     const dispatch = useDispatch()
@@ -26,7 +27,7 @@ function ProductCarousel() {
                             <Link to={`/product/${product._id}`}>
                                 <Image src={product.image} alt={product.name} fluid />
                                 <Carousel.Caption className='carousel.caption'>
-                                    <h4>{product.name} (${product.price})</h4>
+                                    <h4 className="price" style={{ textAlign: 'right', direction: 'rtl' }}>{product.name} ({formatPriceToPersian(product.price)})</h4>
                                 </Carousel.Caption>
                             </Link>
                         </Carousel.Item>

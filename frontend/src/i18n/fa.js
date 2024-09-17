@@ -1,6 +1,6 @@
 const fa = {
     cartempty: 'سبد خرید شما خالی است',
-    goback: 'برگشتن',
+    goback: 'برگشت',
     shoppingcart: 'سبد خرید',
     subtotal:'جمع جزء',
     items:'اقلام',
@@ -100,7 +100,12 @@ const fa = {
     Profile:'پروفایل',
     Logout:'خروج',
     Loading:'در حال بارگذاری',
-    Cart:'سبد خرید'
+    Cart:'سبد خرید',
+    Address:'آدرس',
+    City:'شهر',
+    Entercity:'شهر را وارد کنید',
+    PostalCode:'کد پستی',
+    Country:'کشور',
 };
 
 export default fa;

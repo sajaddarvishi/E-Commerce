@@ -8,6 +8,7 @@ import Message from '../components/Message'
 import { listProductDetails, createProductReview } from '../actions/productActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 import { useTranslation } from 'react-i18next'
+import { formatPriceToPersian } from '../utils/priceFormatter';
 
 
 function ProductScreen({ match, history }) {
@@ -83,7 +84,7 @@ function ProductScreen({ match, history }) {
                                         </ListGroup.Item>
 
                                         <ListGroup.Item>
-                                            {t('Price2')} ${product.price}
+                                            {t('Price2')} {formatPriceToPersian(product.price)}
                                         </ListGroup.Item>
 
                                         <ListGroup.Item>
@@ -100,7 +101,7 @@ function ProductScreen({ match, history }) {
                                                 <Row>
                                                     <Col>{t('Price2')}</Col>
                                                     <Col>
-                                                        <strong>${product.price}</strong>
+                                                        <strong>{formatPriceToPersian(product.price)}</strong>
                                                     </Col>
                                                 </Row>
                                             </ListGroup.Item>

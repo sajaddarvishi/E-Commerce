@@ -25,13 +25,13 @@ function SearchBox() {
                 type='text'
                 name='q'
                 onChange={(e) => setKeyword(e.target.value)}
-                className='mr-sm-2 ml-sm-5'
+                className='mr-sm-2 ml-sm-5 p-1'
             ></Form.Control>
 
             <Button
                 type='submit'
                 variant='outline-success'
-                className='p-2'
+                className='p-1'
             >
                 {t('Submit')}
             </Button>

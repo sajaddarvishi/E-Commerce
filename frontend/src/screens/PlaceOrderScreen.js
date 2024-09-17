@@ -7,6 +7,8 @@ import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 import { useTranslation } from 'react-i18next'
+import { formatPriceToPersian } from '../utils/priceFormatter';
+
 
 
 function PlaceOrderScreen({ history }) {
@@ -59,7 +61,7 @@ function PlaceOrderScreen({ history }) {
                             <h2>{t('Shipping')}</h2>
 
                             <p>
-                                <strong>{t('Shipping1')} </strong>
+                                <strong>{t('Address')} </strong>
                                 {cart.shippingAddress.address},  {cart.shippingAddress.city}
                                 {'  '}
                                 {cart.shippingAddress.postalCode},
@@ -94,7 +96,7 @@ function PlaceOrderScreen({ history }) {
                                                     </Col>
 
                                                     <Col md={4}>
-                                                        {item.qty} X ${item.price} = ${(item.qty * item.price).toFixed(2)}
+                                                        {item.qty} * {formatPriceToPersian(item.price)} = {formatPriceToPersian((item.qty * item.price).toFixed(2))}
                                                     </Col>
                                                 </Row>
                                             </ListGroup.Item>
@@ -117,28 +119,28 @@ function PlaceOrderScreen({ history }) {
                             <ListGroup.Item>
                                 <Row>
                                     <Col>{t('Items1')}</Col>
-                                    <Col>${cart.itemsPrice}</Col>
+                                    <Col>{formatPriceToPersian(cart.itemsPrice)}</Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
                                     <Col>{t('Shipping1')}</Col>
-                                    <Col>${cart.shippingPrice}</Col>
+                                    <Col>{formatPriceToPersian(cart.shippingPrice)}</Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
                                     <Col>{t('Tax')}</Col>
-                                    <Col>${cart.taxPrice}</Col>
+                                    <Col>{formatPriceToPersian(cart.taxPrice)}</Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
                                     <Col>{t('Total1')}</Col>
-                                    <Col>${cart.totalPrice}</Col>
+                                    <Col>{formatPriceToPersian(cart.totalPrice)}</Col>
                                 </Row>
                             </ListGroup.Item>
 

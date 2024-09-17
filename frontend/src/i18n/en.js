@@ -101,6 +101,11 @@ const en = {
     Logout:'Logout',
     Loading:'Loading...',
     Cart:'Cart',
+    Address:'Address',
+    City:'City',
+    Entercity:'Enter city',
+    PostalCode:'Postal Code',
+    Country:'Country'
 
 };
 

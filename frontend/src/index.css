@@ -1,23 +1,52 @@
-main{
-    min-height: 80vh;
+/* Default LTR styles */
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('./assets/fonts/Vazirmatn-Regular.ttf') format('truetype'),
+       url('./assets/fonts/Vazirmatn-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-h1{
-  font-size: 1.8rem;
-  padding:1rem 0;
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('./assets/fonts/Vazirmatn-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
 }
 
-h2{
-  font-size: 1.4rem;
-  padding:0.5rem 0;
+body {
+  font-family: Vazirmatn, sans-serif;
+  direction: rtl; 
 }
 
-h3{
-    padding:1rem 0;
+body .price {
+  text-align: right !important;
+  direction: rtl !important;
+  display: inline-block !important;
 }
 
-.rating span{
-  margin:0.1rem;
+
+main {
+  min-height: 80vh;
+}
+
+body, h1, h2, h3, p, span, a, li, div {
+  font-family: 'Vazirmatn', sans-serif !important;
+}
+
+h1, h2, h3 {
+  padding-right: 0;
+  text-align: right; /* LTR specific */
+}
+
+.rating span {
+  margin: 0.1rem;
+}
+
+.price {
+  text-align: right !important;
+  direction: rtl !important;
+  display: inline-block; /* Ensure proper layout */
 }
 
 /* carousel */
@@ -26,17 +55,20 @@ h3{
 .carousel-item.active {
   display: flex;
 }
+
 .carousel-caption {
   position: absolute;
   top: 0;
+  text-align: right; /* LTR specific */
 }
 
 .carousel-caption h4 {
+  font-family: 'Vazirmatn', sans-serif;
   color: #fff;
 }
 
 .carousel img {
-  display:block;
+  display: block;
   height: 300px;
   padding: 30px;
   margin: 40px;
@@ -44,12 +76,133 @@ h3{
   margin-left: auto;
   margin-right: auto;
 }
+
 .carousel a {
   margin: 0 auto;
 }
+
 @media (max-width: 900px) {
   .carousel-caption h2 {
     font-size: 2.5vw;
   }
 }
 
+/* RTL Specific Adjustments */
+body[dir="rtl"] {
+  direction: rtl;
+}
+
+body[dir="rtl"] h1, 
+body[dir="rtl"] h2, 
+body[dir="rtl"] h3, 
+body[dir="rtl"] p, 
+body[dir="rtl"] a, 
+body[dir="rtl"] li, 
+body[dir="rtl"] span,  
+body[dir="rtl"] div {
+  text-align: right; /* Apply RTL text alignment */
+}
+
+body[dir="rtl"] .carousel-caption {
+  text-align: right;
+}
+
+/* Fix carousel arrows in RTL */
+body[dir="rtl"] .carousel-control-prev {
+  right: 0; 
+  left: auto; /* Swap arrow positions */
+}
+
+body[dir="rtl"] .carousel-control-next {
+  left: 0;
+  right: auto; /* Swap arrow positions */
+}
+
+/* Flexbox adjustments for RTL */
+body[dir="rtl"] .carousel-item-next,
+body[dir="rtl"] .carousel-item-prev,
+body[dir="rtl"] .carousel-item.active {
+  flex-direction: row-reverse; /* Reverse direction for carousel */
+}
+
+/* Adjust padding and margin for RTL context */
+body[dir="rtl"] h1, 
+body[dir="rtl"] h2, 
+body[dir="rtl"] h3 {
+  padding-right: 1rem;
+  padding-left: 0;
+}
+
+body[dir="rtl"] .carousel img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ensure body is RTL */
+body[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Form input fields in RTL */
+body[dir="rtl"] input, 
+body[dir="rtl"] textarea, 
+body[dir="rtl"] select {
+  text-align: right;  /* Align text inside form fields to the right */
+}
+
+/* Align placeholder text in input fields in RTL */
+body[dir="rtl"] ::placeholder {
+  text-align: right;  /* Align placeholder text to the right */
+}
+
+/* Table in RTL */
+body[dir="rtl"] table {
+  direction: rtl;  /* Ensure table follows RTL rules */
+  text-align: right;
+}
+
+/* Table header and cell alignment for RTL */
+body[dir="rtl"] th, 
+body[dir="rtl"] td {
+  text-align: right;  /* Align table text to the right */
+  padding-right: 1rem;  /* Adjust padding for proper RTL layout */
+  padding-left: 0;
+}
+
+/* RTL-specific button styles */
+body[dir="rtl"] button {
+  text-align: center;  /* Center button text */
+  display: inline-block;
+  padding-right: 1rem;  /* Optional padding adjustment */
+  padding-left: 0;
+}
+
+/* RTL for specific cases */
+body[dir="rtl"] .order-total, 
+body[dir="rtl"] .order-payment, 
+body[dir="rtl"] .order-status {
+  text-align: right;  /* Align order details to the right */
+}
+
+/* Carousel adjustments (already applied, but ensure this is correct) */
+body[dir="rtl"] .carousel-control-prev {
+  right: 0; 
+  left: auto; /* Swap arrow positions */
+}
+
+body[dir="rtl"] .carousel-control-next {
+  left: 0;
+  right: auto; /* Swap arrow positions */
+}
+
+body[dir="rtl"] .carousel-item-next,
+body[dir="rtl"] .carousel-item-prev,
+body[dir="rtl"] .carousel-item.active {
+  flex-direction: row-reverse; /* Reverse direction for carousel */
+}
+
+.card-text.price {
+  text-align: right !important;
+  direction: rtl !important;
+}

@@ -28,11 +28,11 @@ function ShippingScreen({ history }) {
     return (
         <FormContainer>
             <CheckoutSteps step1 step2 />
-            <h1>Shipping</h1>
+            <h1>{t('Shipping')}</h1>
             <Form onSubmit={submitHandler}>
 
                 <Form.Group controlId='address'>
-                    <Form.Label>Address</Form.Label>
+                    <Form.Label>{t('Address')}</Form.Label>
                     <Form.Control
                         required
                         type='text'
@@ -44,11 +44,11 @@ function ShippingScreen({ history }) {
                 </Form.Group>
 
                 <Form.Group controlId='city'>
-                    <Form.Label>City</Form.Label>
+                    <Form.Label>{t('City')}</Form.Label>
                     <Form.Control
                         required
                         type='text'
-                        placeholder='Enter city'
+                        placeholder={t('Entercity')}
                         value={city ? city : ''}
                         onChange={(e) => setCity(e.target.value)}
                     >
@@ -56,7 +56,7 @@ function ShippingScreen({ history }) {
                 </Form.Group>
 
                 <Form.Group controlId='postalCode'>
-                    <Form.Label>Postal Code</Form.Label>
+                    <Form.Label>{t('PostalCode')}</Form.Label>
                     <Form.Control
                         required
                         type='text'
@@ -68,7 +68,7 @@ function ShippingScreen({ history }) {
                 </Form.Group>
 
                 <Form.Group controlId='country'>
-                    <Form.Label>Country</Form.Label>
+                    <Form.Label>{t('Country')}</Form.Label>
                     <Form.Control
                         required
                         type='text'
@@ -80,7 +80,7 @@ function ShippingScreen({ history }) {
                 </Form.Group>
 
                 <Button type='submit' variant='primary'>
-                    Continue
+                    {t('Continue')}
                 </Button>
             </Form>
         </FormContainer>

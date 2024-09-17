@@ -8,6 +8,7 @@ import Paginate from '../components/Paginate'
 import { listProducts, deleteProduct, createProduct } from '../actions/productActions'
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 import { useTranslation } from 'react-i18next'
+import { formatPriceToPersian } from '../utils/priceFormatter';
 
 
 function ProductListScreen({ history, match }) {
@@ -65,7 +66,7 @@ function ProductListScreen({ history, match }) {
 
                 <Col className='text-right'>
                     <Button className='my-3' onClick={createProductHandler}>
-                        <i className='fas fa-plus'></i> {t('Create Product')}
+                        <i className='fas fa-plus'></i> {t('CreateProduct')}
                     </Button>
                 </Col>
             </Row>
@@ -100,7 +101,7 @@ function ProductListScreen({ history, match }) {
                                         <tr key={product._id}>
                                             <td>{product._id}</td>
                                             <td>{product.name}</td>
-                                            <td>${product.price}</td>
+                                            <td>{formatPriceToPersian(product.price)}</td>
                                             <td>{product.category}</td>
                                             <td>{product.brand}</td>
 

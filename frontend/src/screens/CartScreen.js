@@ -5,6 +5,8 @@ import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 import { useTranslation } from 'react-i18next'
+import { formatPriceToPersian } from '../utils/priceFormatter';
+
 
 function CartScreen({ match, location, history }) {
     const { t } =useTranslation()
@@ -51,7 +53,7 @@ function CartScreen({ match, location, history }) {
                                         </Col>
 
                                         <Col md={2}>
-                                            ${item.price}
+                                            {formatPriceToPersian(item.price)}
                                         </Col>
 
                                         <Col md={3}>
@@ -93,7 +95,7 @@ function CartScreen({ match, location, history }) {
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
                             <h2>{t('subtotal')} ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) {t ('items')}</h2>
-                            ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
+                            {formatPriceToPersian(cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2))}
                         </ListGroup.Item>
                     </ListGroup>
 

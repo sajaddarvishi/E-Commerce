@@ -11,6 +11,8 @@ import { useTranslation } from 'react-i18next'
 
 
 
+
+
 function HomeScreen({ history }) {
     const { t } =useTranslation()
     const dispatch = useDispatch()
@@ -25,10 +27,10 @@ function HomeScreen({ history }) {
     }, [dispatch, keyword])
 
     return (
-        <div>
+        <div style={{ direction: 'rtl' }}>
             {!keyword && <ProductCarousel />}
 
-            <h1>{t('latestproducts')}</h1>
+            <h1 style={{ direction: 'rtl' }}>{t('latestproducts')}</h1>
             {loading ? <Loader />
                 : error ? <Message variant='danger'>{error}</Message>
                     :
