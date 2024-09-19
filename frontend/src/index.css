@@ -19,11 +19,13 @@ html, body {
   font-family: 'Vazirmatn', sans-serif !important;
   direction: rtl;
   text-align: right;
+  letter-spacing: normal; /* Added */
 }
 
 /* Ensure font is applied to all common elements */
 body, h1, h2, h3, p, span, a, li, div, input, textarea, select, button {
   font-family: 'Vazirmatn', sans-serif !important;
+  letter-spacing: normal!important; /* Added */
 }
 
 /* Heading adjustments */
@@ -54,6 +56,7 @@ h1, h2, h3 {
 .carousel-caption h4 {
   font-family: 'Vazirmatn', sans-serif;
   color: #fff;
+  letter-spacing: normal;
 }
 
 .carousel img {

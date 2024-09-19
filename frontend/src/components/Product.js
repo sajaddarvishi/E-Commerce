@@ -27,7 +27,7 @@ function Product({product}) {
           </div>
 
         </Card.Text>
-        <Card.Text as="h3"  className="price" >
+        <Card.Text as="h3"  className="price" style={{ fontWeight: 'bold', fontSize: '14px' }} >
           {formatPriceToPersian(product.price)}
         </Card.Text>
       </Card.Body>

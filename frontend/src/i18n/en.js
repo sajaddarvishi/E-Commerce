@@ -114,6 +114,14 @@ const en = {
     InStock: 'In Stock',
     OutofStock:'Out of Stock',
 
+    FollowUs: 'Follow us on social media',
+    ContactUs: 'Contact Us',
+    Addressf: 'Tehran, ',
+    Phonef: 'Phone: 021-',
+    Emailf: 'Email: info@email.ir',
+    LegalInquiries: 'Legal Inquiries: ',
+    AllRightsReserved: 'All rights reserved by Co.'
+
 };
 
 export default en;

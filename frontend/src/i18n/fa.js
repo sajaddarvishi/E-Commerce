@@ -113,6 +113,15 @@ const fa = {
     Country:'کشور',
     InStock: 'موجود',
     OutofStock:'تمام شده',
+    FollowUs: 'ما را در شبکه‌های اجتماعی دنبال کنید',
+    ContactUs: 'تماس با ما',
+    Addressf: ' میدان ',
+    Phonef: 'تلفن: 021-',
+    Emailf: 'ایمیل: info@m.ir',
+    LegalInquiries: 'واحد پاسخگویی : 888',
+    AllRightsReserved: 'همه حقوق این سایت متعلق به شرکت  است'
+
+    
 };
 
 export default fa;
