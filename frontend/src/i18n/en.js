@@ -81,6 +81,7 @@ const en = {
     VeryGood:'4 - Very Good',
     Excellent:'5 - Excellent',
     Submit:'Submit',
+    search:'Search',
     Please:'Please',
     login:'login',
     Login1:'Login',

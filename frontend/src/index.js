@@ -8,6 +8,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './i18n';
 
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

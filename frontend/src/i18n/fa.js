@@ -81,6 +81,7 @@ const fa = {
     VeryGood:'4 - خیلی خوب',
     Excellent:'5 - عالی',
     Submit:'ارسال',
+    search:'جستجو',
     Please:'لطفاً',
     login:'ورود',
     Login1:'ورود',

@@ -6,7 +6,6 @@ import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
 import { useTranslation } from 'react-i18next'
 
-
 function Header() {
     const { t } = useTranslation();
 
@@ -29,11 +28,18 @@ function Header() {
 
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <SearchBox />
-                        <Nav className="ml-auto">
+
+                        <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: '40px' }}>
+                            <SearchBox />
+                        </div>
+
+                        <Nav className="ml-auto"> 
+                            <LinkContainer to='/login'>
+                                <Nav.Link><i className="fas fa-user"></i>{t('Login1')}</Nav.Link>
+                            </LinkContainer>
 
                             <LinkContainer to='/cart'>
-                                <Nav.Link ><i className="fas fa-shopping-cart"></i>{t('Cart')}</Nav.Link>
+                                <Nav.Link><i className="fas fa-shopping-cart"></i>{t('Cart')}</Nav.Link>
                             </LinkContainer>
 
                             {userInfo ? (
@@ -45,12 +51,7 @@ function Header() {
                                     <NavDropdown.Item onClick={logoutHandler}>{t('Logout')}</NavDropdown.Item>
 
                                 </NavDropdown>
-                            ) : (
-                                    <LinkContainer to='/login'>
-                                        <Nav.Link><i className="fas fa-user"></i>{t('Login1')}</Nav.Link>
-                                    </LinkContainer>
-                                )}
-
+                            ) : null}
 
                             {userInfo && userInfo.isAdmin && (
                                 <NavDropdown title='Admin' id='adminmenue'>
@@ -68,9 +69,8 @@ function Header() {
 
                                 </NavDropdown>
                             )}
-
-
                         </Nav>
+
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
