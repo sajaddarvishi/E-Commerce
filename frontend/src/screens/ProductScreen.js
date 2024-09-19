@@ -80,7 +80,7 @@ function ProductScreen({ match, history }) {
                                         </ListGroup.Item>
 
                                         <ListGroup.Item>
-                                            <Rating value={product.rating} text={`${product.numReviews} reviews`} color={'#f8e825'} />
+                                            <Rating value={product.rating} text={`${product.numReviews}  ${t('Review')}`} color={'#f8e825'} />
                                         </ListGroup.Item>
 
                                         <ListGroup.Item>
@@ -109,7 +109,7 @@ function ProductScreen({ match, history }) {
                                                 <Row>
                                                     <Col>{t('Status')}</Col>
                                                     <Col>
-                                                        {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
+                                                        {product.countInStock > 0 ? t('InStock') : t('OutofStock')}
                                                     </Col>
                                                 </Row>
                                             </ListGroup.Item>

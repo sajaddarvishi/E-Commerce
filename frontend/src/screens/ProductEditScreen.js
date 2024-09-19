@@ -120,7 +120,7 @@ function ProductEditScreen({ match, history }) {
 
                                     type='name'
                                     placeholder='Enter name'
-                                    value={name}
+                                    value={name ? name : ' '}
                                     onChange={(e) => setName(e.target.value)}
                                 >
                                 </Form.Control>

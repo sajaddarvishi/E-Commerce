@@ -36,7 +36,7 @@ function ShippingScreen({ history }) {
                     <Form.Control
                         required
                         type='text'
-                        placeholder='Enter address'
+                        placeholder={t('Enteraddress')}
                         value={address ? address : ''}
                         onChange={(e) => setAddress(e.target.value)}
                     >
@@ -60,7 +60,7 @@ function ShippingScreen({ history }) {
                     <Form.Control
                         required
                         type='text'
-                        placeholder='Enter postal code'
+                        placeholder={t('Enterpostalcode')}
                         value={postalCode ? postalCode : ''}
                         onChange={(e) => setPostalCode(e.target.value)}
                     >
@@ -72,7 +72,7 @@ function ShippingScreen({ history }) {
                     <Form.Control
                         required
                         type='text'
-                        placeholder='Enter country'
+                        placeholder={t('Entercountry')}
                         value={country ? country : ''}
                         onChange={(e) => setCountry(e.target.value)}
                     >

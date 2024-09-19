@@ -8,6 +8,8 @@ import { createOrder } from '../actions/orderActions'
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 import { useTranslation } from 'react-i18next'
 import { formatPriceToPersian } from '../utils/priceFormatter';
+import { formatNumberToPersian } from '../utils/numberFormatter';
+
 
 
 
@@ -61,7 +63,7 @@ function PlaceOrderScreen({ history }) {
                             <h2>{t('Shipping')}</h2>
 
                             <p>
-                                <strong>{t('Address')} </strong>
+                                <strong>{t('Address1')} </strong>
                                 {cart.shippingAddress.address},  {cart.shippingAddress.city}
                                 {'  '}
                                 {cart.shippingAddress.postalCode},
@@ -96,7 +98,8 @@ function PlaceOrderScreen({ history }) {
                                                     </Col>
 
                                                     <Col md={4}>
-                                                        {item.qty} * {formatPriceToPersian(item.price)} = {formatPriceToPersian((item.qty * item.price).toFixed(2))}
+                                                        {formatPriceToPersian((item.qty * item.price).toFixed(2))} = {formatPriceToPersian(item.price)} * {formatNumberToPersian(item.qty)} 
+                                                    
                                                     </Col>
                                                 </Row>
                                             </ListGroup.Item>

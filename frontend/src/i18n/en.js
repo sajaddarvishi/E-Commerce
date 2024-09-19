@@ -36,6 +36,7 @@ const en = {
     NotDelivered:'Not Delivered',
     PaymentMethod:'Payment Method',
     Method:'Method:',
+    Address1:'Address:',
     Paidon:'Paid on',
     NotPaid:'Not Paid',
     OrderItems:'Order Items',
@@ -104,8 +105,13 @@ const en = {
     Address:'Address',
     City:'City',
     Entercity:'Enter city',
+    Enteraddress:'Enter address',
+    Enterpostalcode:'Enter postal code',
     PostalCode:'Postal Code',
-    Country:'Country'
+    Entercountry:'Enter country',
+    Country:'Country',
+    InStock: 'In Stock',
+    OutofStock:'Out of Stock',
 
 };
 

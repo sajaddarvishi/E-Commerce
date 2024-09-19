@@ -36,6 +36,7 @@ const fa = {
     NotDelivered:'تحویل نشده',
     PaymentMethod:'روش پرداخت',
     Method:'روش:',
+    Address1:'آدرس:',
     Paidon:'پرداخت در',
     NotPaid:'پرداخت نشده',
     OrderItems:'اقلام سفارش',
@@ -104,8 +105,13 @@ const fa = {
     Address:'آدرس',
     City:'شهر',
     Entercity:'شهر را وارد کنید',
+    Enteraddress:'آدرس را وارد کنید',
+    Enterpostalcode:'کد پستی را وارد کنید',
+    Entercountry:'کشور را وارد کنید',
     PostalCode:'کد پستی',
     Country:'کشور',
+    InStock: 'موجود',
+    OutofStock:'تمام شده',
 };
 
 export default fa;

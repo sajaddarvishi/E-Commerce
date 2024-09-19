@@ -7,7 +7,8 @@ import Loader from '../components/Loader'
 import { getOrderDetails, deliverOrder } from '../actions/orderActions'
 import { ORDER_DELIVER_RESET } from '../constants/orderConstants'
 import { useTranslation } from 'react-i18next'
-
+import { formatPriceToPersian } from '../utils/priceFormatter';
+import { formatNumberToPersian } from '../utils/numberFormatter';
 
 
 function OrderScreen({ match, history }) {
@@ -29,18 +30,16 @@ function OrderScreen({ match, history }) {
         order.itemsPrice = order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
     }
 
-
     useEffect(() => {
-        if (!userInfo){
-            history.push('/login')
+        if (!userInfo) {
+            history.push('/login');
         }
-        if (!order || order._id !== Number(orderId) || orderDeliver) {
-            dispatch({ type: ORDER_DELIVER_RESET })
-
-            dispatch(getOrderDetails(orderId))
-
-        } 
-    }, [dispatch, order, orderId, successDeliver])
+    
+        if (!order || order._id !== Number(orderId) || successDeliver) {
+            dispatch({ type: ORDER_DELIVER_RESET });
+            dispatch(getOrderDetails(orderId));
+        }
+    }, [dispatch, order, orderId, userInfo, successDeliver, history]);
 
     const deliverHandler = () => {
         dispatch(deliverOrder(order))
@@ -61,7 +60,7 @@ function OrderScreen({ match, history }) {
                                     <p><strong>{t('Name')} </strong> {order.user.name}</p>
                                     <p><strong>{t('Email')} </strong><a href={`mailto:${order.user.email}`}>{order.user.email}</a></p>
                                     <p>
-                                        <strong>{t('Shipping1')} </strong>
+                                        <strong>{t('Address1')} </strong>
                                         {order.shippingAddress.address},  {order.shippingAddress.city}
                                         {'  '}
                                         {order.shippingAddress.postalCode},
@@ -82,9 +81,9 @@ function OrderScreen({ match, history }) {
                                         {order.paymentMethod}
                                     </p>
                                     {order.isPaid ? (
-                                        <Message variant='success'>{t('Paid on')} {order.paidAt}</Message>
+                                        <Message variant='success'>{t('Paidon')} {order.paidAt}</Message>
                                     ) : (
-                                            <Message variant='warning'>{t('Not Paid')}</Message>
+                                            <Message variant='warning'>{t('NotPaid')}</Message>
                                         )}
 
                                 </ListGroup.Item>
@@ -107,7 +106,8 @@ function OrderScreen({ match, history }) {
                                                             </Col>
 
                                                             <Col md={4}>
-                                                                {item.qty} X ${item.price} = ${(item.qty * item.price).toFixed(2)}
+                                                                {formatPriceToPersian((item.qty * item.price).toFixed(2))} = {formatPriceToPersian(item.price)} * {formatNumberToPersian(item.qty)} 
+
                                                             </Col>
                                                         </Row>
                                                     </ListGroup.Item>
@@ -124,34 +124,34 @@ function OrderScreen({ match, history }) {
                             <Card>
                                 <ListGroup variant='flush'>
                                     <ListGroup.Item>
-                                        <h2>{t('Order Summary')}</h2>
+                                        <h2>{t('OrderSummary')}</h2>
                                     </ListGroup.Item>
 
                                     <ListGroup.Item>
                                         <Row>
                                             <Col>{t('Items1')}</Col>
-                                            <Col>${order.itemsPrice}</Col>
+                                            <Col>{formatPriceToPersian(order.itemsPrice)}</Col>
                                         </Row>
                                     </ListGroup.Item>
 
                                     <ListGroup.Item>
                                         <Row>
                                             <Col>{t('Shipping1')}</Col>
-                                            <Col>${order.shippingPrice}</Col>
+                                            <Col>{formatPriceToPersian(order.shippingPrice)}</Col>
                                         </Row>
                                     </ListGroup.Item>
 
                                     <ListGroup.Item>
                                         <Row>
                                             <Col>{t('Tax:')}</Col>
-                                            <Col>${order.taxPrice}</Col>
+                                            <Col>{formatPriceToPersian(order.taxPrice)}</Col>
                                         </Row>
                                     </ListGroup.Item>
 
                                     <ListGroup.Item>
                                         <Row>
                                             <Col>{t('Total1')}</Col>
-                                            <Col>${order.totalPrice}</Col>
+                                            <Col>{formatPriceToPersian(order.totalPrice)}</Col>
                                         </Row>
                                     </ListGroup.Item>
 
