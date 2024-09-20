@@ -156,7 +156,7 @@ function ProductScreen({ match, history }) {
 
                             <Row>
                                 <Col md={6}>
-                                    <h4>{t('Reviews')}</h4>
+                                    <h4 style={{ letterSpacing: 'normal'}}>{t('Reviews')}</h4>
                                     {product.reviews.length === 0 && <Message variant='info'>{t('NoReviews')}</Message>}
 
                                     <ListGroup variant='flush'>
@@ -170,7 +170,7 @@ function ProductScreen({ match, history }) {
                                         ))}
 
                                         <ListGroup.Item>
-                                            <h4>{t('Writeareview')}</h4>
+                                            <h4 style={{ letterSpacing: 'normal'}}>{t('Writeareview')}</h4>
 
                                             {loadingProductReview && <Loader />}
                                             {successProductReview && <Message variant='success'>{t('ReviewSubmitted')}</Message>}
@@ -179,7 +179,7 @@ function ProductScreen({ match, history }) {
                                             {userInfo ? (
                                                 <Form onSubmit={submitHandler}>
                                                     <Form.Group controlId='rating'>
-                                                        <Form.Label>{t('Rating')}</Form.Label>
+                                                        <Form.Label style={{ letterSpacing: 'normal'}}>{t('Rating')}</Form.Label>
                                                         <Form.Control
                                                             as='select'
                                                             value={rating}
