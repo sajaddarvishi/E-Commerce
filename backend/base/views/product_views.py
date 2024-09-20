@@ -39,12 +39,21 @@ def getProducts(request):
     return Response({'products': serializer.data, 'page': page, 'pages': paginator.num_pages})
 
 
+
 @api_view(['GET'])
 def getTopProducts(request):
-    products = Product.objects.filter(rating__gte=0).order_by('-rating')[0:5]
-    serializer = ProductSerializer(products, many=True)
-    return Response(serializer.data)
 
+    rated_products = Product.objects.filter(rating__isnull=False).order_by('-rating')[:5]
+    
+    if rated_products.count() < 5:
+        unrated_products = Product.objects.filter(rating__isnull=True)[:(5 - rated_products.count())]
+        products = list(rated_products) + list(unrated_products)
+    else:
+        products = rated_products
+
+    serializer = ProductSerializer(products, many=True)
+
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def getProduct(request, pk):
