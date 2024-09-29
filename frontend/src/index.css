@@ -41,30 +41,51 @@ h1, h2, h3 {
   display: inline-block;
 }
 
-/* Carousel styling */
+/* More specific selector for Carousel styling */
+.carousel,
+.carousel .carousel-inner {
+  background-color: #2C3E50 !important; /* Update background color to dark blue with higher specificity */
+}
+
 .carousel-item-next, .carousel-item-prev, .carousel-item.active {
   display: flex;
   flex-direction: row-reverse; /* Adjust for RTL */
+  transition: transform 0.5s ease-in-out; /* Faster transition between items */
+}
+
+/* To further enforce the change */
+.carousel-inner {
+  background-color: #2C3E50 !important; /* Apply to inner carousel element as well */
 }
 
 .carousel-caption {
   position: absolute;
   top: 0;
   text-align: right;
+  padding: 5px;
 }
 
 .carousel-caption h4 {
   font-family: 'Vazirmatn', sans-serif;
   color: #fff;
   letter-spacing: normal;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  line-height: 1.4;
 }
 
 .carousel img {
   display: block;
-  height: 300px;
-  padding: 30px;
-  margin: 40px auto;
+  height: 250px; /* Reduce height slightly for better visual alignment */
+  padding: 15px; /* Less padding to keep images more compact */
+  margin: 20px auto; /* Reduce margin to make more space */
   border-radius: 50%;
+  margin-top: 30px;
+}
+
+/* Speed up the carousel interval */
+.carousel {
+  animation: slide 2s ease-in-out infinite; /* Increase the speed of the slide */
 }
 
 /* Responsive font size for carousel */
@@ -91,4 +112,8 @@ button {
 /* Specific alignment for order-related details */
 .order-total, .order-payment, .order-status {
   text-align: right;
+}
+
+.nav-item-right {
+  text-align: right !important;
 }

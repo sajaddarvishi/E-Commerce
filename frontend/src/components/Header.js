@@ -19,8 +19,8 @@ function Header() {
     }
 
     return (
-        <header style={{ direction: 'rtl' }}>
-            <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+        <header style={{ direction: 'rtl', backgroundColor: '#6AA84F' }}>
+            <Navbar variant="dark" expand="lg"  collapseOnSelect style={{ backgroundColor: '#6AA84F' }}>
                 <Container>
                     <LinkContainer to='/'>
                         <Navbar.Brand>{t('ProShop')}</Navbar.Brand>
@@ -33,7 +33,7 @@ function Header() {
                             <SearchBox />
                         </div>
 
-                        <Nav className="ml-auto"> 
+                        <Nav className="mr-auto"> 
                             <LinkContainer to='/login'>
                                 <Nav.Link><i className="fas fa-user"></i>{t('Login1')}</Nav.Link>
                             </LinkContainer>
@@ -56,15 +56,15 @@ function Header() {
                             {userInfo && userInfo.isAdmin && (
                                 <NavDropdown title='Admin' id='adminmenue'>
                                     <LinkContainer to='/admin/userlist'>
-                                        <NavDropdown.Item>{t('Users')}</NavDropdown.Item>
+                                        <NavDropdown.Item className="nav-item-right">{t('Users')}</NavDropdown.Item>
                                     </LinkContainer>
 
                                     <LinkContainer to='/admin/productlist'>
-                                        <NavDropdown.Item>{t('Products')}</NavDropdown.Item>
+                                        <NavDropdown.Item className="nav-item-right">{t('Products')}</NavDropdown.Item>
                                     </LinkContainer>
 
                                     <LinkContainer to='/admin/orderlist'>
-                                        <NavDropdown.Item>{t('orders')}</NavDropdown.Item>
+                                        <NavDropdown.Item className="nav-item-right">{t('orders')}</NavDropdown.Item>
                                     </LinkContainer>
 
                                 </NavDropdown>

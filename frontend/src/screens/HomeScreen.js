@@ -30,7 +30,7 @@ function HomeScreen({ history }) {
         <div style={{ direction: 'rtl' }}>
             {!keyword && <ProductCarousel />}
 
-            <h1 style={{ letterSpacing: 'normal', direction: 'rtl' }}>{t('latestproducts')}</h1>
+            <h1 className="py-2" style={{ letterSpacing: 'normal', direction: 'rtl' }}>{t('latestproducts')}</h1>
             {loading ? <Loader />
                 : error ? <Message variant='danger'>{error}</Message>
                     :

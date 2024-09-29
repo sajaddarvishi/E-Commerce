@@ -6,7 +6,7 @@ function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px 0' }}>
+    <footer style={{ backgroundColor: '#6AA84F', color: '#fff', padding: '20px 0' }}>
       <Container>
         <Row>
           
