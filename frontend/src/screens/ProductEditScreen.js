@@ -10,10 +10,9 @@ import { listProductDetails, updateProduct } from '../actions/productActions'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 import { useTranslation } from 'react-i18next'
 
-
 function ProductEditScreen({ match, history }) {
     
-    const { t } =useTranslation()
+    const { t } = useTranslation()
     const productId = match.params.id
 
     const [name, setName] = useState('')
@@ -25,6 +24,10 @@ function ProductEditScreen({ match, history }) {
     const [description, setDescription] = useState('')
     const [uploading, setUploading] = useState(false)
 
+    const [errorName, setErrorName] = useState('')
+    const [errorBrand, setErrorBrand] = useState('')
+    const [errorCategory, setErrorCategory] = useState('')
+
     const dispatch = useDispatch()
 
     const productDetails = useSelector(state => state.productDetails)
@@ -33,9 +36,7 @@ function ProductEditScreen({ match, history }) {
     const productUpdate = useSelector(state => state.productUpdate)
     const { error: errorUpdate, loading: loadingUpdate, success: successUpdate } = productUpdate
 
-
     useEffect(() => {
-
         if (successUpdate) {
             dispatch({ type: PRODUCT_UPDATE_RESET })
             history.push('/admin/productlist')
@@ -50,16 +51,42 @@ function ProductEditScreen({ match, history }) {
                 setCategory(product.category)
                 setCountInStock(product.countInStock)
                 setDescription(product.description)
-
             }
         }
-
-
-
     }, [dispatch, product, productId, history, successUpdate])
 
     const submitHandler = (e) => {
         e.preventDefault()
+
+        // Validation checks for required fields
+        let valid = true;
+
+        if (!name || name.trim() === '') {
+            setErrorName('Product name is required')
+            valid = false
+        } else {
+            setErrorName('')
+        }
+
+        if (!brand || brand.trim() === '') {
+            setErrorBrand('Brand is required')
+            valid = false
+        } else {
+            setErrorBrand('')
+        }
+
+        if (!category || category.trim() === '') {
+            setErrorCategory('Category is required')
+            valid = false
+        } else {
+            setErrorCategory('')
+        }
+
+        // If all validations pass, dispatch the update
+        if (!valid) {
+            return
+        }
+
         dispatch(updateProduct({
             _id: productId,
             name,
@@ -90,7 +117,6 @@ function ProductEditScreen({ match, history }) {
 
             const { data } = await axios.post('/api/products/upload/', formData, config)
 
-
             setImage(data)
             setUploading(false)
 
@@ -117,19 +143,18 @@ function ProductEditScreen({ match, history }) {
                             <Form.Group controlId='name'>
                                 <Form.Label>{t('Name1')}</Form.Label>
                                 <Form.Control
-
-                                    type='name'
+                                    type='text'
                                     placeholder='Enter name'
-                                    value={name ? name : ' '}
+                                    value={name ? name : ''}
                                     onChange={(e) => setName(e.target.value)}
                                 >
                                 </Form.Control>
+                                {errorName && <Message variant='danger'>{errorName}</Message>}
                             </Form.Group>
 
                             <Form.Group controlId='price'>
                                 <Form.Label>{t('Price')}</Form.Label>
                                 <Form.Control
-
                                     type='number'
                                     placeholder='Enter price'
                                     value={price}
@@ -138,13 +163,11 @@ function ProductEditScreen({ match, history }) {
                                 </Form.Control>
                             </Form.Group>
 
-
                             <Form.Group controlId='image'>
                                 <Form.Label>{t('Image')}</Form.Label>
                                 <Form.Control
-
                                     type='text'
-                                    placeholder= 'Enter image'
+                                    placeholder='Enter image'
                                     value={image}
                                     onChange={(e) => setImage(e.target.value)}
                                 >
@@ -156,29 +179,25 @@ function ProductEditScreen({ match, history }) {
                                     custom
                                     onChange={uploadFileHandler}
                                 >
-
                                 </Form.File>
                                 {uploading && <Loader />}
-
                             </Form.Group>
-
 
                             <Form.Group controlId='brand'>
                                 <Form.Label>{t('Brand')}</Form.Label>
                                 <Form.Control
-
                                     type='text'
                                     placeholder='Enter brand'
-                                    value={brand}
+                                    value={brand ? brand : ''}
                                     onChange={(e) => setBrand(e.target.value)}
                                 >
                                 </Form.Control>
+                                {errorBrand && <Message variant='danger'>{errorBrand}</Message>}
                             </Form.Group>
 
                             <Form.Group controlId='countinstock'>
                                 <Form.Label>{t('Stock')}</Form.Label>
                                 <Form.Control
-
                                     type='number'
                                     placeholder='Enter stock'
                                     value={countInStock}
@@ -190,19 +209,18 @@ function ProductEditScreen({ match, history }) {
                             <Form.Group controlId='category'>
                                 <Form.Label>{t('Category')}</Form.Label>
                                 <Form.Control
-
                                     type='text'
                                     placeholder='Enter category'
-                                    value={category}
+                                    value={category ? category : ''}
                                     onChange={(e) => setCategory(e.target.value)}
                                 >
                                 </Form.Control>
+                                {errorCategory && <Message variant='danger'>{errorCategory}</Message>}
                             </Form.Group>
 
                             <Form.Group controlId='description'>
                                 <Form.Label>{t('Description')}</Form.Label>
                                 <Form.Control
-
                                     type='text'
                                     placeholder='Enter description'
                                     value={description}
@@ -211,17 +229,15 @@ function ProductEditScreen({ match, history }) {
                                 </Form.Control>
                             </Form.Group>
 
-
-                            <Button type='submit' variant='primary'>
+                            <Button type='submit' variant='primary' disabled={!name.trim() || !brand.trim() || !category.trim()}>
                                 {t('Update')}
-                        </Button>
+                            </Button>
 
                         </Form>
                     )}
 
-            </FormContainer >
+            </FormContainer>
         </div>
-
     )
 }
 
