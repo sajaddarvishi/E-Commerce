@@ -1,3 +1,4 @@
+// File: /mnt/data/App.js
 import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { HashRouter as Router, Route } from 'react-router-dom';
@@ -18,6 +19,7 @@ import UserEditScreen from './screens/UserEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
+import CategoryScreen from './screens/CategoryScreen';
 
 function App() {
   useEffect(() => {
@@ -28,30 +30,33 @@ function App() {
 
   return (
     <Router>
-      <Header />
-      <main className="py-3" style={{ direction: 'rtl', textAlign: 'right' }}>  {/* Force RTL */}
-        <Container>
-          <Route path='/' component={HomeScreen} exact />
-          <Route path='/login' component={LoginScreen} />
-          <Route path='/register' component={RegisterScreen} />
-          <Route path='/profile' component={ProfileScreen} />
-          <Route path='/shipping' component={ShippingScreen} />
-          <Route path='/placeorder' component={PlaceOrderScreen} />
-          <Route path='/order/:id' component={OrderScreen} />
-          <Route path='/payment' component={PaymentScreen} />
-          <Route path='/product/:id' component={ProductScreen} />
-          <Route path='/cart/:id?' component={CartScreen} />
+      <div className="app-wrapper">
+        <Header />
+        <main className="py-3 main-content" style={{ direction: 'rtl', textAlign: 'right' }}>
+          <Container>
+            <Route path='/' component={HomeScreen} exact />
+            <Route path='/login' component={LoginScreen} />
+            <Route path='/register' component={RegisterScreen} />
+            <Route path='/profile' component={ProfileScreen} />
+            <Route path='/shipping' component={ShippingScreen} />
+            <Route path='/placeorder' component={PlaceOrderScreen} />
+            <Route path='/order/:id' component={OrderScreen} />
+            <Route path='/payment' component={PaymentScreen} />
+            <Route path='/product/:id' component={ProductScreen} />
+            <Route path='/category/:categoryName' component={CategoryScreen} />
+            <Route path='/cart/:id?' component={CartScreen} />
 
-          <Route path='/admin/userlist' component={UserListScreen} />
-          <Route path='/admin/user/:id/edit' component={UserEditScreen} />
+            <Route path='/admin/userlist' component={UserListScreen} />
+            <Route path='/admin/user/:id/edit' component={UserEditScreen} />
 
-          <Route path='/admin/productlist' component={ProductListScreen} />
-          <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
+            <Route path='/admin/productlist' component={ProductListScreen} />
+            <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
 
-          <Route path='/admin/orderlist' component={OrderListScreen} />
-        </Container>
-      </main>
-      <Footer />
+            <Route path='/admin/orderlist' component={OrderListScreen} />
+          </Container>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 }

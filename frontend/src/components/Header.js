@@ -1,26 +1,35 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Navbar, Nav, Container, Row, NavDropdown } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
-import SearchBox from './SearchBox'
-import { logout } from '../actions/userActions'
-import { useTranslation } from 'react-i18next'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import SearchBox from './SearchBox';
+import { logout } from '../actions/userActions';
+import { fetchCategories } from '../actions/productActions';  // Import the fetchCategories action
+import { useTranslation } from 'react-i18next';
 
 function Header() {
     const { t } = useTranslation();
 
-    const userLogin = useSelector(state => state.userLogin)
-    const { userInfo } = userLogin
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo } = userLogin;
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    // Fetch categories from Redux store
+    const productCategories = useSelector(state => state.productCategories);
+    const { categories, loading, error } = productCategories;
+
+    useEffect(() => {
+        dispatch(fetchCategories());  // Fetch categories when the component loads
+    }, [dispatch]);
 
     const logoutHandler = () => {
-        dispatch(logout())
-    }
+        dispatch(logout());
+    };
 
     return (
         <header style={{ direction: 'rtl', backgroundColor: '#6AA84F' }}>
-            <Navbar variant="dark" expand="lg"  collapseOnSelect style={{ backgroundColor: '#6AA84F' }}>
+            <Navbar variant="dark" expand="lg" collapseOnSelect style={{ backgroundColor: '#6AA84F' }}>
                 <Container>
                     <LinkContainer to='/'>
                         <Navbar.Brand>{t('ProShop')}</Navbar.Brand>
@@ -33,7 +42,18 @@ function Header() {
                             <SearchBox />
                         </div>
 
-                        <Nav className="mr-auto"> 
+                        <Nav className="mr-auto">
+                            {/* Static title for categories dropdown */}
+                            <NavDropdown title="دسته‌بندی کالاها" id='categories-dropdown'>
+                                {loading && <NavDropdown.Item>Loading...</NavDropdown.Item>}
+                                {error && <NavDropdown.Item>{error}</NavDropdown.Item>}
+                                {categories && categories.map((category, index) => (
+                                    <LinkContainer to={`/category/${category}`} key={index}>
+                                        <NavDropdown.Item>{category}</NavDropdown.Item>
+                                    </LinkContainer>
+                                ))}
+                            </NavDropdown>
+
                             <LinkContainer to='/login'>
                                 <Nav.Link><i className="fas fa-user"></i>{t('Login1')}</Nav.Link>
                             </LinkContainer>
@@ -49,24 +69,22 @@ function Header() {
                                     </LinkContainer>
 
                                     <NavDropdown.Item onClick={logoutHandler}>{t('Logout')}</NavDropdown.Item>
-
                                 </NavDropdown>
                             ) : null}
 
                             {userInfo && userInfo.isAdmin && (
-                                <NavDropdown title='Admin' id='adminmenue'>
+                                <NavDropdown title='Admin' id='adminmenu'>
                                     <LinkContainer to='/admin/userlist'>
-                                        <NavDropdown.Item className="nav-item-right">{t('Users')}</NavDropdown.Item>
+                                        <NavDropdown.Item>{t('Users')}</NavDropdown.Item>
                                     </LinkContainer>
 
                                     <LinkContainer to='/admin/productlist'>
-                                        <NavDropdown.Item className="nav-item-right">{t('Products')}</NavDropdown.Item>
+                                        <NavDropdown.Item>{t('Products')}</NavDropdown.Item>
                                     </LinkContainer>
 
                                     <LinkContainer to='/admin/orderlist'>
-                                        <NavDropdown.Item className="nav-item-right">{t('orders')}</NavDropdown.Item>
+                                        <NavDropdown.Item>{t('Orders')}</NavDropdown.Item>
                                     </LinkContainer>
-
                                 </NavDropdown>
                             )}
                         </Nav>
@@ -75,7 +93,7 @@ function Header() {
                 </Container>
             </Navbar>
         </header>
-    )
+    );
 }
 
-export default Header
+export default Header;
